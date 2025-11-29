@@ -3,50 +3,55 @@
 
 	<head>
 		<meta charset="utf-8">
-		<script src="https://unpkg.com/htmx.org@2.0.8/dist/htmx.min.js"></script>
-		<title>
-			Corey Barkley - Home
-		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://cdn.tailwindcss.com"></script>
+		<style>
+			body { font-family: "Comic Sans MS", "Comic Sans", cursive}
+		</style>
+		<title>My Name - Home</title>
+		<script>
+			const c = [
+				"π ≈ 3.141592653589793",
+				"τ ≈ 6.283185307179586",
+				"e ≈ 2.718281828459045",
+				"φ ≈ 1.6180339887498948",
+				"√2 ≈ 1.414213562373095",
+				"ln(2) ≈ 0.693147180559945",
+				"c = 299,792,458",
+				"g ≈ 0.000000000066743",
+			];
+		</script>
 	</head>
 
-	<body>
+	<body class="bg-gray-50 text-gray-900 p-6 flex flex-col items-center">
 
 		<header>
-			<h1>
-				Corey Barkley
+			<h1 class="text-4xl font-bold my-6">
+				My Name
 			</h1>
 		</header>
 
 		<main>
-			<p>Hello World!</p>
-			<div style="margin-bottom: 20px;">
-				<button onclick="showRandomConstant()">
+			<p class="text-lg mb-6 text-center">
+				Hello World!
+			</p>
+			<div class="flex flex-col items-center">
+				<button
+					class="px-3 py-1 bg-gray-700 text-white rounded hover:bg-gray-800 active:bg-gray-900 transition"
+					onclick="box.textContent = c[Math.random()*c.length|0]"
+				>
 					Generate Random Number
 				</button>
-				<div id="box" style="margin-top: 10px;"></div>
+				<div id="box" class="mt-6 p-4 min-h-[48px] text-center text-xl"></div>
 			</div>
 		</main>
 
 		<footer>
 			<small>
-				© 2025 Corey Barkley
+				© 2025 My Name
 			</small>
 		</footer>
 
-		<script>
-		const CONSTANTS = [
-			"π ≈ 3.141592653589793",
-			"e ≈ 2.718281828459045",
-			"φ ≈ 1.618033988749895",
-			"√2 ≈ 1.4142135623730951",
-			"√3 ≈ 1.7320508075688772",
-			"ln(2) ≈ 0.6931471805599453",
-		];
-		function showRandomConstant() {
-			const i = Math.floor(Math.random() * CONSTANTS.length);
-			document.getElementById("box").textContent = CONSTANTS[i];
-		}
-		</script>
 
 	</body>
 
