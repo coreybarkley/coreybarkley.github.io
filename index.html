@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<script src="https://unpkg.com/htmx.org@2.0.8/dist/htmx.min.js"></script>
@@ -7,27 +8,46 @@
 			Corey Barkley - Home
 		</title>
 	</head>
+
 	<body>
+
 		<header>
 			<h1>
 				Corey Barkley
 			</h1>
 		</header>
+
 		<main>
-			<p>
-				Hello World!
-			</p>
-			<button hx-get="rand_num.html" hx-target="#box" hx-swap="innerHTML">
-				Random Number
-			</button>
-			<div>
-				Click to generate random number
+			<p>Hello World!</p>
+			<div style="margin-bottom: 20px;">
+				<button onclick="showRandomConstant()">
+					Generate Random Number
+				</button>
+				<div id="box" style="margin-top: 10px;"></div>
 			</div>
 		</main>
+
 		<footer>
 			<small>
 				© 2025 Corey Barkley
 			</small>
 		</footer>
+
+		<script>
+		const CONSTANTS = [
+			"π ≈ 3.141592653589793",
+			"e ≈ 2.718281828459045",
+			"φ ≈ 1.618033988749895",
+			"√2 ≈ 1.4142135623730951",
+			"√3 ≈ 1.7320508075688772",
+			"ln(2) ≈ 0.6931471805599453",
+		];
+		function showRandomConstant() {
+			const i = Math.floor(Math.random() * CONSTANTS.length);
+			document.getElementById("box").textContent = CONSTANTS[i];
+		}
+		</script>
+
 	</body>
+
 </html>

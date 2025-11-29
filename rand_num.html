@@ -1,0 +1,14 @@
+<p id="num"></p>
+<script>
+	// document.getElementById("num").textContent = Math.floor(Math.random() * 100);
+	const constants = [
+		"π ≈ 3.141592653589793",
+		"e ≈ 2.718281828459045",
+		"φ ≈ 1.618033988749895",
+		"√2 ≈ 1.4142135623730951",
+		"√3 ≈ 1.7320508075688772",
+		"ln(2) ≈ 0.6931471805599453",
+	];
+	document.getElementById("num").textContent =
+		constants[Math.floor(Math.random() * constants.length)];
+</script>
