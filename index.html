@@ -1,10 +1,13 @@
 <!doctype html>
 <html>
 	<head>
-		<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>Corey Barkley - Home</title>
+		<meta charset="utf-8">
+		<script src="https://unpkg.com/htmx.org@2.0.8/dist/htmx.min.js"></script>
+		<title>
+			Corey Barkley - Home
+		</title>
 	</head>
-	<head>
+	<body>
 		<header>
 			<h1>
 				Corey Barkley
@@ -14,11 +17,17 @@
 			<p>
 				Hello World!
 			</p>
+			<button hx-get="rand_num.html" hx-target="#box" hx-swap="innerHTML">
+				Random Number
+			</button>
+			<div>
+				Click to generate random number
+			</div>
 		</main>
 		<footer>
 			<small>
 				© 2025 Corey Barkley
 			</small>
 		</footer>
-	</head>
+	</body>
 </html>
