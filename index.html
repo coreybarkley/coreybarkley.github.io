@@ -60,7 +60,7 @@
 
 		<main>
 			<p class="text-lg mb-6 text-center">
-				Hello World!
+				Hello, World!
 			</p>
 			<div class="flex flex-col items-center">
 				<button
@@ -75,10 +75,11 @@
 
 		<footer class="mt-4 flex flex-col items-center gap-2">
 			<button
+				id="theme-toggle"
 				class="text-xs px-1.5 py-0.5"
 				onclick="
 					document.body.classList.toggle('dark')
-					this.textContent = document.body.classulist.contains('dark') ? 'Light Mode' : 'Dark Mode';
+					this.textContent = document.body.classList.contains('dark') ? 'Light Mode' : 'Dark Mode';
 				"
 			>
 				Dark Mode
@@ -88,6 +89,15 @@
 			</small>
 		</footer>
 
+		<script>
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			document.addEventListener('DOMContentLoaded', () => {
+				document.body.classList.add('dark');
+				const btn = document.getElementById('theme-toggle');
+				if (btn) btn.textContent = 'Light Mode';
+			});
+		}
+		</script>
 
 	</body>
 
