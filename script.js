@@ -9,47 +9,54 @@ const c = [
 	"g ≈ 0.000000000066743",
 ];
 
+
 document.addEventListener("DOMContentLoaded", () => {
 
-	const saved = localStorage.getItem("theme");
-	const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-	if (saved === "dark" || (!saved && prefersDark)) {
-		document.body.classList.add("dark");
-	} else {
-		document.body.classList.remove("dark");
-	}
-
+	const themeBtn = document.getElementById("theme-toggle");
+	const menuBtn = document.getElementById("menu-button");
+	const sidebar = document.getElementById("sidebar");
 	const randBtn = document.getElementById("rand-btn");
 	const box = document.getElementById("box");
+	const iframe = document.getElementById("shiny-frame");
+	const baseShinyUrl = "https://coreybarkley.shinyapps.io/sudoku/";
+	const saved = localStorage.getItem("theme");
+	const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+	const startDark = saved === "dark" || (!saved && prefersDark);
+
+	document.body.classList.toggle("dark", startDark);
+
+	if (themeBtn) {
+		themeBtn.textContent = startDark ? "Light Mode" : "Dark Mode";
+	}
+
+	if (iframe) {
+		iframe.src = baseShinyUrl + (startDark ? "?mode=dark" : "?mode=light")
+	}
+
+	if (themeBtn) {
+		themeBtn.addEventListener("click", () => {
+			document.body.classList.toggle("dark");
+			const isDark = document.body.classList.contains("dark");
+			themeBtn.textContent = isDark ? "Light Mode" : "Dark Mode";
+			localStorage.setItem("theme", isDark ? "dark" : "light");
+			if (iframe) {
+				iframe.src = baseShinyUrl + (isDark ? "?mode=dark" : "?mode=light")
+			}
+		});
+	}
+
 	if (randBtn && box) {
 		randBtn.addEventListener("click", () => {
 			box.textContent = c[Math.random() * c.length | 0];
 		});
 	}
 
-	const themeBtn = document.getElementById("theme-toggle");
-		if (themeBtn) {
-			themeBtn.textContent = document.body.classList.contains("dark")
-				? "Light Mode"
-				: "Dark Mode";
 
-			themeBtn.addEventListener("click", () => {
-				document.body.classList.toggle("dark");
-				const isDark = document.body.classList.contains("dark");
-				themeBtn.textContent = isDark ? "Light Mode" : "Dark Mode";
-				localStorage.setItem("theme", isDark ? "dark" : "light");
-			});
-		}
+	if (menuBtn && sidebar) {
+		menuBtn.addEventListener("click", () => {
+			sidebar.classList.toggle("-translate-x-full");
+			menuBtn.classList.toggle("translate-x-32");
+		});
+	}
 
-		const sidebar = document.getElementById("sidebar");
-		const menuBtn = document.getElementById("menu-button");
-
-		if (menuBtn && sidebar) {
-			menuBtn.addEventListener("click", () => {
-				sidebar.classList.toggle("-translate-x-full");
-				menuBtn.classList.toggle("translate-x-32");
-			});
-		}
-
-	});
+});
