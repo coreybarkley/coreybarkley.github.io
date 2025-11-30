@@ -1,0 +1,45 @@
+
+body {
+	font-family: "Comic Neue Angular", "Comic Neue", sans-serif;
+}
+
+.dark {
+	background-color: #0a0a0a;
+	color: #f3f4f6;
+}
+
+button {
+	background-color: #ffffff;
+	color: #1f2937;
+	border: 1px solid #cbd5e1;
+	border-radius: 4px;
+	padding: 0.125rem 0.5rem;
+	font-size: 0.875rem;
+}
+
+button:hover {
+	background-color: #f3f4f6;
+}
+
+.dark button {
+	background-color: #374151;
+	color: #f9fafb;
+	border-color: #6b7280;
+}
+
+.dark button:hover {
+	background-color: #4b5563;
+}
+
+#sidebar {
+	background-color: #ffffff;
+	color: #1f2937;
+	border-right: 1px solid #cbd5e1;
+}
+
+.dark #sidebar {
+	background-color: #0a0a0a;
+	color: #f9fafb;
+	border-right: 1px solid #6b7280;
+}
+
