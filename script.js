@@ -13,12 +13,7 @@ const c = [
 document.addEventListener("DOMContentLoaded", () => {
 
 	const themeBtn = document.getElementById("theme-toggle");
-	const menuBtn = document.getElementById("menu-button");
-	const sidebar = document.getElementById("sidebar");
-	const randBtn = document.getElementById("rand-btn");
-	const box = document.getElementById("box");
 	const iframe = document.getElementById("shiny-frame");
-	const baseShinyUrl = "https://coreybarkley.shinyapps.io/sudoku/";
 	const themePref = localStorage.getItem("theme");
 
 	let isDark = themePref === "dark";
@@ -27,27 +22,44 @@ document.addEventListener("DOMContentLoaded", () => {
 		isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 	}
 
-	document.body.classList.toggle("dark", isDark);
-	if (themeBtn) themeBtn.textContent = isDark ? "Light Mode" : "Dark Mode";
-	if (iframe) iframe.src = baseShinyUrl + (isDark ? "?mode=dark" : "?mode=light")
+	function applyTheme() {
+		document.body.classList.toggle("dark", isDark);
+		if (themeBtn) themeBtn.textContent = isDark ? "Light Mode" : "Dark Mode";
+		localStorage.setItem("theme", isDark ? "dark" : "light");
+
+		if (iframe && iframe.contentWindow) {
+			iframe.contentWindow.postMessage(
+				{ type: "theme", dark: isDark },
+				"*"
+			);
+		}
+	}
+
+	applyTheme();
+
+	if (iframe) {
+		iframe.addEventListener("load", applyTheme);
+	}
 
 	if (themeBtn) {
 		themeBtn.addEventListener("click", () => {
 			isDark = !isDark;
-			document.body.classList.toggle("dark", isDark);
-			themeBtn.textContent = isDark ? "Light Mode" : "Dark Mode";
-			localStorage.setItem("theme", isDark ? "dark" : "light");
-			if (iframe) iframe.src = baseShinyUrl + (isDark ? "?mode=dark" : "?mode=light")
+			applyTheme();
 		});
 	}
 
+	//random number buton
+	const randBtn = document.getElementById("rand-btn");
+	const box = document.getElementById("box");
 	if (randBtn && box) {
 		randBtn.addEventListener("click", () => {
 			box.textContent = c[Math.random() * c.length | 0];
 		});
 	}
 
-
+	//menu buton
+	const menuBtn = document.getElementById("menu-button");
+	const sidebar = document.getElementById("sidebar");
 	if (menuBtn && sidebar) {
 		menuBtn.addEventListener("click", () => {
 			sidebar.classList.toggle("-translate-x-full");
