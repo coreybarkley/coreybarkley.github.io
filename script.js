@@ -19,29 +19,25 @@ document.addEventListener("DOMContentLoaded", () => {
 	const box = document.getElementById("box");
 	const iframe = document.getElementById("shiny-frame");
 	const baseShinyUrl = "https://coreybarkley.shinyapps.io/sudoku/";
-	const saved = localStorage.getItem("theme");
-	const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-	const startDark = saved === "dark" || (!saved && prefersDark);
+	const themePref = localStorage.getItem("theme");
 
-	document.body.classList.toggle("dark", startDark);
+	let isDark = themePref === "dark";
 
-	if (themeBtn) {
-		themeBtn.textContent = startDark ? "Light Mode" : "Dark Mode";
+	if (themePref === null) {
+		isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 	}
 
-	if (iframe) {
-		iframe.src = baseShinyUrl + (startDark ? "?mode=dark" : "?mode=light")
-	}
+	document.body.classList.toggle("dark", isDark);
+	if (themeBtn) themeBtn.textContent = isDark ? "Light Mode" : "Dark Mode";
+	if (iframe) iframe.src = baseShinyUrl + (isDark ? "?mode=dark" : "?mode=light")
 
 	if (themeBtn) {
 		themeBtn.addEventListener("click", () => {
-			document.body.classList.toggle("dark");
-			const isDark = document.body.classList.contains("dark");
+			isDark = !isDark;
+			document.body.classList.toggle("dark", isDark);
 			themeBtn.textContent = isDark ? "Light Mode" : "Dark Mode";
 			localStorage.setItem("theme", isDark ? "dark" : "light");
-			if (iframe) {
-				iframe.src = baseShinyUrl + (isDark ? "?mode=dark" : "?mode=light")
-			}
+			if (iframe) iframe.src = baseShinyUrl + (isDark ? "?mode=dark" : "?mode=light")
 		});
 	}
 
