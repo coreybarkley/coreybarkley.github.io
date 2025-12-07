@@ -1,43 +1,146 @@
 body {
 	font-family: "Comic Neue Angular", "Comic Neue", sans-serif;
+	background-color: #ffffff;
+	color: #0d0d0f;
 }
 
-.dark {
-	background-color: #0a0a0a;
-	color: #f3f4f6;
-}
+/* ------ Light Mode ------- */
 
 button {
 	background-color: #ffffff;
-	color: #1f2937;
-	border: 1px solid #cbd5e1;
-	border-radius: 4px;
+	color: #0d0d0f;
+	border: 1px solid #0d0d0f;
+	border-radius: 6px;
 	padding: 0.125rem 0.5rem;
 	font-size: 0.875rem;
 }
 
 button:hover {
-	background-color: #f3f4f6;
-}
-
-.dark button {
-	background-color: #374151;
-	color: #f9fafb;
-	border-color: #6b7280;
-}
-
-.dark button:hover {
-	background-color: #4b5563;
+	background-color: #93a3af;
 }
 
 #sidebar {
 	background-color: #ffffff;
-	color: #1f2937;
-	border-right: 1px solid #cbd5e1;
+	color: #0d0d0f;
+	border-right: 1px solid #0d0d0f;
+	border-radius: 6px;
+}
+
+#menu-btn {
+	border: 1px solid transparent;
+}
+
+#menu-btn:hover {
+	border: 1px solid #0d0d0f;
+}
+
+.nav-item {
+	text-align: center;
+	border-radius: 6px;
+	border: 1px solid transparent;
+	padding: 0.125rem 0.5rem;
+}
+
+.nav-item:hover {
+	background-color: #93a3af;
+	border: 1px solid #0d0d0f;
+}
+
+form {
+	background-color: #ffffff;
+	color: #0d0d0f;
+}
+
+input, #msg-display {
+	background-color: #ffffff;
+	color: #0d0d0f;
+	border: 1px solid #0d0d0f;
+	border-radius: 6px;
+	padding: 0.125rem 0.5rem;
+}
+
+input:hover, #msg-display:hover {
+	background-color: #93a3af;
+}
+
+input::placeholder {
+	color: #0d0d0f !important;
+	opacity: .5 !important;
+}
+
+/* ------ Dark Mode ------- */
+
+.dark {
+	background-color: #0d0d0f;
+	color: #93a3af;
+}
+
+.dark button {
+	border-color: #93a3af;
+}
+
+.dark button:hover {
+	background-color: #23272e;
 }
 
 .dark #sidebar {
-	background-color: #0a0a0a;
-	color: #f9fafb;
-	border-right: 1px solid #6b7280;
+	background-color: #0d0d0f;
+	color: #93a3af;
+	border-right: 1px solid #93a3af;
+}
+
+.dark #menu-btn {
+	border: 1px solid transparent;
+}
+
+.dark #menu-btn:hover {
+	border: 1px solid #93a3af;
+}
+
+.dark .nav-item:hover {
+	background-color: #23272e;
+	border: 1px solid #93a3af;
+}
+
+.dark form {
+	background-color: #0d0d0f;
+	color: #93a3af;
+}
+
+.dark input, .dark #msg-display {
+	background-color: #0d0d0f;
+	color: #93a3af;
+	border: 1px solid #93a3af;
+}
+
+.dark input:hover, .dark #msg-display:hover {
+	background-color: #23272e;
+}
+
+.dark input::placeholder {
+	color: #93a3af !important;
+	opacity: .5 !important;
+}
+
+/* ------ Other ------- */
+
+iframe {
+	width: 100%;
+	height: 60vh;
+	border: 0;
+}
+
+#msg-display {
+	position: relative;
+}
+
+#msg-display.placeholder::before {
+	content: attr(data-placeholder);
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	pointer-events: none;
+	opacity: .5;
 }
