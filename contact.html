@@ -57,15 +57,19 @@
 						<input
 							id="name-box"
 							type=text
+							name="name"
 							placeholder="Name"
 							class="flex-1 text-center"
+							autocomplete="off"
 							required
 						>
 						<input
 							id="email-box"
-							type=text
+							type=email
+							name="email"
 							placeholder="email@website.com"
 							class="flex-1 text-center"
+							autocomplete="off"
 							required
 						>
 					</div>
@@ -84,11 +88,16 @@
 							name="message"
 							class="absolute inset-x-0 bottom-2 w-px h-px
 								   opacity-0 pointer-events-none"
+							autocomplete="off"
 							required
 						>
 					</div>
 
-					<button id="submit-btn" class="px-3 mt-2">
+					<button
+						id="submit-btn"
+						class="px-3 mt-2"
+						type="submit"
+					>
 						Submit
 					</button>
 
