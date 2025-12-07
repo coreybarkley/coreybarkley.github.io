@@ -125,9 +125,14 @@ input::placeholder {
 /* ------ Other ------- */
 
 iframe {
-	width: 100%;
-	height: 60vh;
-	border: 0;
+	border: 1px solid #0d0d0f;
+	border-radius: 6px;
+	padding: 0.125rem 0.5rem;
+}
+
+.dark iframe {
+	border: 1px solid #93a3af;
+	border-radius: 6px;
 }
 
 #msg-display {
